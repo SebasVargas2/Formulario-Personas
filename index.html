@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PERSONAS</title>
+        <style>
+            table,th,tr,td{
+                border: solid 1px black;
+                border-collapse: collapse;
+            }
+        </style>
+        
+    </head>
+    <body>
+        Nombre: <input type="text" id="nombre">  <br>
+        Edad:   <input type="number" id="edad">  <br>
+        Genero: <select id="genero">
+            <option value=""></option>
+            <option value="f">Femenino</option>    
+            <option value="m">Masculino</option>
+        </select> <br>
+        Fecha de nacimiento: <input type="date" id="fecha">  <br>
+        <br>
+        <button id="agregar" type="submit">Añadir</button>
+        <button id="mNombres" type="submit">Nombres</button>
+        <button id="edades" type="submit">Edades</button><br><br>
+        <div id="pantalla"></div>
+        
+        
+        <script src="main.js"></script>
+    </body>
+    </html>

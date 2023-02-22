@@ -23,6 +23,9 @@ edades.addEventListener('click',ages)
 const porcentaje=document.getElementById('porcentaje')
 porcentaje.addEventListener('click',porcent)
 
+const mees=document.getElementById('mes')
+mees.addEventListener('click',mess)
+
 
 function agg(){
     let name=nombre.value
@@ -86,21 +89,41 @@ function ages(){
 
 function porcent(){
     let man=personas.filter(i=>{return i.genero=="m"})
-    let contMan=man.length
-
     let woman=personas.filter(i=>{return i.genero=="f"})
-    let contWoman=woman.length
     
-    let op1=(100/personas.length)*contMan
-    let op2=(100/personas.length)*contWoman
+    let op1=(100/personas.length)*man.length
+    let op2=(100/personas.length)*woman.length
 
     let contenido=''
-    contenido=`<table><th>Porcentaje Edades</th>`
-    contenido+=`<tr><td>Hombres</td></tr>`
+    contenido=`<table><th>Porcentaje Generos</th>`
+    contenido+=`<tr><th>Hombres</th><td></td></tr>`
     contenido+=`<tr><td>${op1}%</td></tr>`
     contenido+=`<tr><td>Mujeres</td></tr>`
     contenido+=`<tr><td>${op2}%</td></tr>`
     contenido+=`</table>`
     document.getElementById('pantalla').innerHTML=contenido
+}
+
+function mess(){
+    let month=prompt(`indique el mes que desee consultar
+    1.Enero
+    2.Febrero
+    3.Marzo
+    4.Abril
+    5.Mayo
+    6.Junio
+    7.Julio
+    8.Agosto
+    9.Septiembre
+    10.Octubre
+    11.Noviembre
+    12.Diciembre` )
+    
+    switch (month){
+        case 1:
+            let Mes=personas.filter(i => i.fecha.mes)
+            console.log(Mes)
+    }
+
 }
 

@@ -98,14 +98,14 @@ function porcent(){
     contenido=`<table><th>Porcentaje Generos</th>`
     contenido+=`<tr><th>Hombres</th><td></td></tr>`
     contenido+=`<tr><td>${op1}%</td></tr>`
-    contenido+=`<tr><td>Mujeres</td></tr>`
+    contenido+=`<tr><th>Mujeres</th></tr>`
     contenido+=`<tr><td>${op2}%</td></tr>`
     contenido+=`</table>`
     document.getElementById('pantalla').innerHTML=contenido
 }
 
 function mess(){
-    let month=prompt(`indique el mes que desee consultar
+    let month=parseInt(prompt(`indique el mes que desee consultar
     1.Enero
     2.Febrero
     3.Marzo
@@ -117,13 +117,59 @@ function mess(){
     9.Septiembre
     10.Octubre
     11.Noviembre
-    12.Diciembre` )
+    12.Diciembre` ))
     
     switch (month){
         case 1:
-            let Mes=personas.filter(i => i.fecha.mes)
-            console.log(Mes)
+            let Mes1=personas.filter(i => i.fecha.mes==01).map(j=>j.nombre)
+            console.log(Mes1)
+            break;
+        case 2:
+            let Mes2=personas.filter(i => i.fecha.mes==02).map(j=>j.nombre)
+            console.log(Mes2)
+            break;
+        case 3:
+            let Mes3=personas.filter(i => i.fecha.mes==03).map(j=>j.nombre)
+            console.log(Mes3)
+            break;
+        case 4:
+            let Mes4=personas.filter(i => i.fecha.mes==04).map(j=>j.nombre)
+            console.log(Mes4)
+            break;
+        case 5:
+            let Mes5=personas.filter(i => i.fecha.mes==05).map(j=>j.nombre)
+            console.log(Mes5)
+            break;
+        case 6:
+            let Mes6=personas.filter(i => i.fecha.mes==06).map(j=>j.nombre)
+            console.log(Mes6)
+            break;
+        case 7:
+            let Mes7=personas.filter(i => i.fecha.mes==07).map(j=>j.nombre)
+            console.log(Mes7)
+            break;
+        case 8:
+            let Mes8=personas.filter(i => i.fecha.mes==08).map(j=>j.nombre)
+            console.log(Mes8)
+            break;
+        case 9:
+            let Mes9=personas.filter(i => i.fecha.mes==09).map(j=>j.nombre)
+            console.log(Mes9)
+            break;
+        case 10:
+            let Mes10=personas.filter(i => i.fecha.mes==10).map(j=>j.nombre)
+            console.log(Mes10)
+            break;
+        case 11:
+            let Mes11=personas.filter(i => i.fecha.mes==11).map(j=>j.nombre)
+            console.log(Mes11)
+            break;
+        case 12:
+            let Mes12=personas.filter(i => i.fecha.mes==12).map(j=>j.nombre)
+            console.log(Mes12)
+            break;
+        default:
+            alert('Digite un numero correcto')
     }
-
 }
 

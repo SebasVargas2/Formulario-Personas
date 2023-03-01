@@ -1,8 +1,9 @@
-const personas=[
+let flag=false
+let personas=[
     {nombre:'Tasha',edad:'21',genero:'f',fecha:{dia:01,mes:09,anio:2002}},
     {nombre:'Tyrone',edad:'19',genero:'m',fecha:{dia:01,mes:07,anio:2004}},
     {nombre:'Uniqua',edad:'60',genero:'f',fecha:{dia:01,mes:04,anio:1963}},
-    {nombre:'Austin',edad:'13',genero:'m',fecha:{dia:01,mes:01,anio:2009}},
+    {nombre:'Austin',edad:'13',genero:'m',fecha:{dia:01,mes:02,anio:2009}},
     {nombre:'Pablo',edad:'9',genero:'m',fecha:{dia:13,mes:04,anio:2014}}
 ]
 
@@ -26,6 +27,11 @@ porcentaje.addEventListener('click',porcent)
 const mees=document.getElementById('mes')
 mees.addEventListener('click',mess)
 
+const reset=document.getElementById('reset')
+reset.addEventListener('click',reseteo)
+
+const eliminar=document.getElementById('eliminar')
+eliminar.addEventListener('click',elimina)
 
 function agg(){
     let name=nombre.value
@@ -60,11 +66,15 @@ function agg(){
 
 function names(){
     let contenido=''
-    contenido=`<table><th>Names</th>`
-    personas.forEach(i=>{
-        contenido+=`<tr><td>${i.nombre}</td></tr>`
-    })
-    contenido+=`</table>`
+    if (personas==''){
+        contenido+=`Lista vacia, ingrese las personas que desea visualizar`
+    }else{
+        contenido=`<table><th>Names</th>`
+        personas.forEach(i=>{
+            contenido+=`<tr><td>${i.nombre}</td></tr>`
+        })
+        contenido+=`</table>`
+    }
     document.getElementById('pantalla').innerHTML=contenido
 }
 
@@ -74,16 +84,17 @@ function ages(){
     let menores=personas.filter(i=>{return i.edad<18}).map(j=>j.nombre)
 
     let contenido=''
-    contenido=`<table><th>Ages</th>`
-    contenido+=`<tr><td>Mayores</td></tr>`
-    contenido+=`<tr><td>${mayores}</td></tr>`
-    contenido+=`<tr><td></td></tr>`
-    contenido+=`<tr><td>Adultos</td></tr>`
-    contenido+=`<tr><td>${adultos}</td></tr>`
-    contenido+=`<tr><td></td></tr>`
-    contenido+=`<tr><td>Menores</td></tr>`
-    contenido+=`<tr><td>${menores}</td></tr>`
-    contenido+=`</table>`
+    if (personas==''){
+        contenido+=`Lista vacia, ingrese las personas que desea visualizar`
+    }else{
+        contenido+=`<table style="border: 1px solid black;"><tr><th>Mayores: </th>`
+        contenido+=`<td>${mayores}</td></tr>`
+        contenido+=`<tr><th>Adultos: </th>`
+        contenido+=`<td>${adultos}</td></tr>`
+        contenido+=`<tr><th>Menores: </th>`
+        contenido+=`<td>${menores}</td></tr>`
+        contenido+=`</table>`
+    }
     document.getElementById('pantalla').innerHTML=contenido
 }
 
@@ -95,81 +106,220 @@ function porcent(){
     let op2=(100/personas.length)*woman.length
 
     let contenido=''
-    contenido=`<table><th>Porcentaje Generos</th>`
-    contenido+=`<tr><th>Hombres</th><td></td></tr>`
-    contenido+=`<tr><td>${op1}%</td></tr>`
-    contenido+=`<tr><th>Mujeres</th></tr>`
-    contenido+=`<tr><td>${op2}%</td></tr>`
-    contenido+=`</table>`
+
+    if (personas==''){
+        contenido+=`Lista vacia, ingrese las personas que desea visualizar`
+    }else{
+        contenido+=`<table style="border: 1px solid black;">`
+        contenido+=`<td><th>Porcentaje</th></td>`
+        contenido+=`<tr><th>Hombres</th>`
+        contenido+=`<td>${op1.toFixed(2)}%</td></tr>`
+        contenido+=`<tr><th>Mujeres</th>`
+        contenido+=`<td>${op2.toFixed(2)}%</td></tr>`
+        contenido+=`</table>`
+    }
     document.getElementById('pantalla').innerHTML=contenido
 }
 
 function mess(){
-    let month=parseInt(prompt(`indique el mes que desee consultar
-    1.Enero
-    2.Febrero
-    3.Marzo
-    4.Abril
-    5.Mayo
-    6.Junio
-    7.Julio
-    8.Agosto
-    9.Septiembre
-    10.Octubre
-    11.Noviembre
-    12.Diciembre` ))
-    
-    switch (month){
-        case 1:
-            let Mes1=personas.filter(i => i.fecha.mes==01).map(j=>j.nombre)
-            console.log(Mes1)
-            break;
-        case 2:
-            let Mes2=personas.filter(i => i.fecha.mes==02).map(j=>j.nombre)
-            console.log(Mes2)
-            break;
-        case 3:
-            let Mes3=personas.filter(i => i.fecha.mes==03).map(j=>j.nombre)
-            console.log(Mes3)
-            break;
-        case 4:
-            let Mes4=personas.filter(i => i.fecha.mes==04).map(j=>j.nombre)
-            console.log(Mes4)
-            break;
-        case 5:
-            let Mes5=personas.filter(i => i.fecha.mes==05).map(j=>j.nombre)
-            console.log(Mes5)
-            break;
-        case 6:
-            let Mes6=personas.filter(i => i.fecha.mes==06).map(j=>j.nombre)
-            console.log(Mes6)
-            break;
-        case 7:
-            let Mes7=personas.filter(i => i.fecha.mes==07).map(j=>j.nombre)
-            console.log(Mes7)
-            break;
-        case 8:
-            let Mes8=personas.filter(i => i.fecha.mes==08).map(j=>j.nombre)
-            console.log(Mes8)
-            break;
-        case 9:
-            let Mes9=personas.filter(i => i.fecha.mes==09).map(j=>j.nombre)
-            console.log(Mes9)
-            break;
-        case 10:
-            let Mes10=personas.filter(i => i.fecha.mes==10).map(j=>j.nombre)
-            console.log(Mes10)
-            break;
-        case 11:
-            let Mes11=personas.filter(i => i.fecha.mes==11).map(j=>j.nombre)
-            console.log(Mes11)
-            break;
-        case 12:
-            let Mes12=personas.filter(i => i.fecha.mes==12).map(j=>j.nombre)
-            console.log(Mes12)
-            break;
-        default:
-            alert('Digite un numero correcto')
+    if (personas==''){
+        let contenido3=`Lista vacia, ingrese las personas que desea visualizar`
+        document.getElementById('pantalla').innerHTML=contenido3
+    }else{
+        let month=parseInt(prompt(`indique el mes que desee consultar
+        1.Enero
+        2.Febrero
+        3.Marzo
+        4.Abril
+        5.Mayo
+        6.Junio
+        7.Julio
+        8.Agosto
+        9.Septiembre
+        10.Octubre
+        11.Noviembre
+        12.Diciembre` ))
+        
+        switch (month){
+            case 1:
+                var contenido2=''
+                let Mes1=personas.filter(i => i.fecha.mes==01).map(j=>j.nombre)
+                if (Mes1==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Enero: </th>`
+                    contenido2+=`<td>${Mes1}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                    
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 2:
+                contenido2=''
+                let Mes2=personas.filter(i => i.fecha.mes==02).map(j=>j.nombre)
+                if (Mes2==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Febero: </th>`
+                    contenido2+=`<td>${Mes2}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 3:
+                contenido2=''
+                let Mes3=personas.filter(i => i.fecha.mes==03).map(j=>j.nombre)
+                if (Mes3==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Marzo: </th>`
+                    contenido2+=`<td>${Mes3}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 4:
+                contenido2=''
+                let Mes4=personas.filter(i => i.fecha.mes==04).map(j=>j.nombre)
+                if (Mes4==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Abril: </th>`
+                    contenido2+=`<td>${Mes4}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 5:
+                contenido2=''
+                let Mes5=personas.filter(i => i.fecha.mes==05).map(j=>j.nombre)
+                if (Mes5==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Mayo: </th>`
+                    contenido2+=`<td>${Mes5}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 6:
+                contenido2=''
+                let Mes6=personas.filter(i => i.fecha.mes==06).map(j=>j.nombre)
+                if (Mes6==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Junio: </th>`
+                    contenido2+=`<td>${Mes6}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 7:
+                contenido2=''
+                let Mes7=personas.filter(i => i.fecha.mes==07).map(j=>j.nombre)
+                if (Mes7==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Julio: </th>`
+                    contenido2+=`<td>${Mes7}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 8:
+                contenido2=''
+                let Mes8=personas.filter(i => i.fecha.mes==08).map(j=>j.nombre)
+                if (Mes8==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Agosto: </th>`
+                    contenido2+=`<td>${Mes8}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 9:
+                contenido2=''
+                let Mes9=personas.filter(i => i.fecha.mes==09).map(j=>j.nombre)
+                if (Mes9==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Septiembre: </th>`
+                    contenido2+=`<td>${Mes9}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 10:
+                contenido2=''
+                let Mes10=personas.filter(i => i.fecha.mes==10).map(j=>j.nombre)
+                if (Mes10==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Octubre: </th>`
+                    contenido2+=`<td>${Mes10}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 11:
+                contenido2=''
+                let Mes11=personas.filter(i => i.fecha.mes==11).map(j=>j.nombre)
+                if (Mes11==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Noviembre: </th>`
+                    contenido2+=`<td>${Mes11}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            case 12:
+                contenido2=''
+                let Mes12=personas.filter(i => i.fecha.mes==12).map(j=>j.nombre)
+                if (Mes11==''){
+                    contenido2+=`Nadie en la lista nacio este mes.`
+                }else{
+                    contenido2+=`<table>`
+                    contenido2+=`<tr><th>Diciembre: </th>`
+                    contenido2+=`<td>${Mes12}</td></tr>`
+                    contenido2+=`</table>`
+                }
+                document.getElementById('pantalla').innerHTML=contenido2
+                break;
+            default:
+                alert('Digite un numero correcto')
+            }
+        }
+    }
+function reseteo(){
+    personas=[]
+}
+
+function elimina(){
+    let seFue=prompt('Digite el nombre de la persona a eliminar como fue ingresado')
+    personas.forEach(i =>{
+        if (i.nombre==seFue){
+            let index=personas.indexOf(i)
+            personas.splice(index,1)
+            alert('Esta persona se ha eliminado con exito')
+            flag=true
+        }
+    })
+    if (flag==false){
+        alert('La persona no se encuenta en la lista')
     }
 }
 

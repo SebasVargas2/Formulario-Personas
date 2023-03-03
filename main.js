@@ -33,6 +33,16 @@ reset.addEventListener('click',reseteo)
 const eliminar=document.getElementById('eliminar')
 eliminar.addEventListener('click',elimina)
 
+const acercade=document.getElementById('acerca')
+acercade.addEventListener('click',acerca)
+
+const refrescar=document.getElementById('refresh')
+refrescar.addEventListener('click',refresh)
+
+const todo=document.getElementById('todo')
+todo.addEventListener('click',all)
+
+
 function agg(){
     let name=nombre.value
     let age=edad.value
@@ -54,7 +64,7 @@ function agg(){
             genero:gender,
             fecha:{dia:day,
                 mes:month,
-                año:year}})
+                anio:year}})
             }
         
         nombre.value=''
@@ -309,17 +319,46 @@ function reseteo(){
 }
 
 function elimina(){
+    flag=false
     let seFue=prompt('Digite el nombre de la persona a eliminar como fue ingresado')
     personas.forEach(i =>{
         if (i.nombre==seFue){
             let index=personas.indexOf(i)
             personas.splice(index,1)
             alert('Esta persona se ha eliminado con exito')
-            flag=true
-        }
-    })
+            flag=true 
+    }})
     if (flag==false){
         alert('La persona no se encuenta en la lista')
     }
 }
 
+function acerca(){
+    document.getElementById('pantalla').innerHTML=`
+    Documento creado por:<br>
+    Sebastian Andres Vargas Paez`
+}
+
+function refresh(){
+    location.reload()
+}
+
+function all(){
+    personas=personas.sort((a,b)=> a.edad-b.edad)
+    contenido=''
+    contenido+=`<table border="">`
+    contenido+=`<th>Nombre</th>`
+    contenido+=`<th>Edad</th>`
+    contenido+=`<th>Genero</th>`
+    contenido+=`<th>Nacimiento(Año)</th>`
+
+    for(i=0;i<personas.length;i++){
+        contenido+=`<tr>`
+        contenido+=`<td>${personas[i].nombre}</td>`
+        contenido+=`<td>${personas[i].edad}</td>`
+        contenido+=`<td>${personas[i].genero}</td>`
+        contenido+=`<td>${personas[i].fecha.anio}</td>`
+    }
+    contenido+=`</table>`
+    document.getElementById('pantalla').innerHTML=contenido
+}
